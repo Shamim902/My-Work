@@ -28,10 +28,11 @@ dataset.isnull().values.any()
 
 # Encoding categorical data
 # Encoding the Independent Variable
-df_category = pd.DataFrame(X,columns = ['BusinessTravel','Department','EducationField','Gender','JobRole','MaritalStatus','Over18','OverTime'])
-df_oh_p = pd.get_dummies(df_category)
-    
-df_people_new = pd.concat([df_category, df_oh_p], axis=1)
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+labelencoder_cat = LabelEncoder()
+
+categories[:,0] = labelencoder_cat.fit_transform(categories[:,0])
+onehotencoder = OneHotEncoder(categorical_features = 0)
 
 # Encoding the Dependent Variable
 labelencoder_y = LabelEncoder()
